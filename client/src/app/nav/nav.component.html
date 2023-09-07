@@ -34,7 +34,6 @@
       </li>
     </ul>
 
-    <div class="dropdown" *ngIf="loggedIn" dropdown>
     <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
       <a
         class="dropdown-toggle text-light text-decoration-none ms-2"
