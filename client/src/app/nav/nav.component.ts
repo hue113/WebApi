@@ -13,7 +13,14 @@ export class NavComponent implements OnInit {
   constructor(public accountService: AccountsService) {}
 
   ngOnInit(): void {
-    console.log('password');
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.accountService.currentUser$.subscribe({
+      next: (user) => (this.loggedIn = !!true), // if user -> return true; if not user -> return false
+      error: (error) => console.log(error),
+    });
   }
 
   login() {
@@ -24,12 +31,10 @@ export class NavComponent implements OnInit {
       },
       error: (err) => console.log('err', err),
     });
-    console.log('login method', this.model);
   }
 
   logout() {
-    console.log('click logout method');
+    this.accountService.logout(); // remove item from localStorage
     this.loggedIn = false;
-    console.log('logout method', this.model);
   }
 }
