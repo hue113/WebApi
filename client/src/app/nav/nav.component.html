@@ -3,7 +3,7 @@
     <a class="navbar-brand" routerLink="/" routerLinkActive="active"
       >Dating App</a
     >
-    <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="loggedIn">
+    <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="currentUser$ | async">
       <li class="nav-item">
         <a class="nav-link" routerLink="/members" routerLinkActive="active"
           >Matches</a
@@ -35,6 +35,7 @@
     </ul>
 
     <div class="dropdown" *ngIf="loggedIn" dropdown>
+    <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
       <a
         class="dropdown-toggle text-light text-decoration-none ms-2"
         dropdownToggle
@@ -49,7 +50,7 @@
     </div>
 
     <form
-      *ngIf="!loggedIn"
+      *ngIf="!(currentUser$ | async)"
       #loginForm="ngForm"
       class="d-flex"
       (ngSubmit)="login()"
