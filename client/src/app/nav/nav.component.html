@@ -3,35 +3,39 @@
     <a class="navbar-brand" routerLink="/" routerLinkActive="active"
       >Dating App</a
     >
-    <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="currentUser$ | async">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/members" routerLinkActive="active"
-          >Matches</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/lists" routerLinkActive="active"
-          >Lists</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/messages" routerLinkActive="active"
-          >Messages</a
-        >
-      </li>
-      <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
-        <a class="nav-link" routerLink="/admin" routerLinkActive="active"
-          >Admin</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/errors" routerLinkActive="active"
-          >Errors</a
-        >
-      </li>
-      <li class="nav-item" (click)="logout()">
-        <a class="nav-link">Logout</a>
-      </li>
+
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <!-- <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="currentUser$ | async"> -->
+      <ng-container *ngIf="accountService.currentUser$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+            >Matches</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >Lists</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Messages</a
+          >
+        </li>
+        <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active"
+            >Admin</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive="active"
+            >Errors</a
+          >
+        </li>
+        <li class="nav-item" (click)="logout()">
+          <a class="nav-link">Logout</a>
+        </li>
+      </ng-container>
     </ul>
 
     <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
