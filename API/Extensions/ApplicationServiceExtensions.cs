@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.Interfaces;
 using API.Services;
@@ -20,6 +16,7 @@ namespace API.Extensions
       services.AddCors();
       services.AddScoped<ITokenService, TokenService>();
       services.AddScoped<IUserRepository, UserRepository>(); // need to add this to make it injectable into User controller
+      services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
       return services;
     }
