@@ -14,26 +14,27 @@ export class MembersService {
 
   getMembers() {
     return this.http.get<Member[]>(
-      this.baseUrl + 'users',
-      this.getHttpOptions()
+      this.baseUrl + 'users'
+      // this.getHttpOptions()  // don't need this anymore, because jwtInterceptor will do this part
     );
   }
 
   getMember(username: string) {
     return this.http.get<Member>(
-      this.baseUrl + 'users/' + username,
-      this.getHttpOptions()
+      this.baseUrl + 'users/' + username
+      // this.getHttpOptions()  // don't need this anymore, because jwtInterceptor will do this part
     );
   }
 
-  getHttpOptions() {
-    const userString = localStorage.getItem('user');
-    if (!userString) return;
-    const user = JSON.parse(userString);
-    return {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + user.token,
-      }),
-    };
-  }
+  // don't need this method anymore, because jwtInterceptor will do this part
+  // getHttpOptions() {
+  //   const userString = localStorage.getItem('user');
+  //   if (!userString) return;
+  //   const user = JSON.parse(userString);
+  //   return {
+  //     headers: new HttpHeaders({
+  //       Authorization: 'Bearer ' + user.token,
+  //     }),
+  //   };
+  // }
 }
