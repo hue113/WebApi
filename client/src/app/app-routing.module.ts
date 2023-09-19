@@ -22,7 +22,7 @@ const routes: Routes = [
         component: MemberListComponent,
         canActivate: [authGuard], // pass any check you'd like to the array to check if users can pass the route
       },
-      { path: 'members/:id', component: MemberDetailComponent },
+      { path: 'members/:username', component: MemberDetailComponent },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
     ],
