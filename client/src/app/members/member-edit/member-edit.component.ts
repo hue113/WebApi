@@ -1,6 +1,6 @@
 import { MembersService } from './../../_services/members.service';
 import { AccountsService } from './../../_services/accounts.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { take } from 'rxjs';
@@ -13,7 +13,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./member-edit.component.css'],
 })
 export class MemberEditComponent implements OnInit {
+  // @ViewChild: to access a specific child component or element in the template
+  // Eg: editForm in this case, so you can reset that form after submitting
   @ViewChild('editForm') editForm: NgForm | undefined;
+
+  // @HostListener: to detect when user click go back/go forward in browser --> to notify them of unsaved changes
+  @HostListener('window:beforeunload', ['$event']) unloadNotification(
+    $event: any
+  ) {
+    if (this.editForm?.dirty) {
+      $event.returnValue = true;
+    }
+  }
+
   member: Member | undefined;
   user: User | null = null;
 
